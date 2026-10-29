@@ -1,0 +1,55 @@
+{
+  "report_id": "forensic-e64e6cf20694",
+  "generated_at": "2026-10-29T14:26:04.085096+00:00",
+  "incident_framework": "MITRE-ATT&CK-T1078-Valid-Accounts",
+  "metrics": {
+    "total_honeytokens_triggered": 1,
+    "total_containment_actions": 1,
+    "total_sessions_terminated": 1,
+    "average_containment_latency_ms": 0.03
+  },
+  "alerts": [
+    {
+      "event_id": "alert-93e5a0d501",
+      "honeytoken_id": "honey-80119b46",
+      "source_ip": "198.51.100.44",
+      "caller_arn": "arn:aws:iam::123456789012:user/canary-decoy-honey-80119b46",
+      "event_name": "GetCallerIdentity",
+      "user_agent": "aws-cli/2.15.15 Python/3.11.6 Linux/5.15.0",
+      "timestamp": "2026-10-29T14:26:04.082232Z",
+      "severity": "CRITICAL"
+    }
+  ],
+  "containment_actions": [
+    {
+      "action_id": "revoc-fe2f4bc9da",
+      "target_principal_arn": "arn:aws:iam::123456789012:user/canary-decoy-honey-80119b46",
+      "status": "SUCCESS",
+      "sessions_terminated": 1,
+      "inline_deny_applied": true,
+      "containment_duration_ms": 0.03,
+      "timestamp": "2026-10-29T14:26:04.083316Z",
+      "metadata": {
+        "offending_ip": "198.51.100.44",
+        "api_event": "GetCallerIdentity",
+        "inline_deny_policy": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Sid": "EmergencyQuarantineDenyAll",
+              "Effect": "Deny",
+              "Action": "*",
+              "Resource": "*",
+              "Condition": {
+                "StringLike": {
+                  "aws:PrincipalArn": "arn:aws:iam::123456789012:user/canary-decoy-honey-80119b46"
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "sha256_checksum": "0ef5086936ac42232484a9522faea88db73b9f4b9bccb5edb210cd4eb7d39965"
+}

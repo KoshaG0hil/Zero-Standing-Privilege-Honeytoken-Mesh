@@ -1,0 +1,5 @@
+aws_region                   = "us-east-1"
+environment                  = "prod"
+project_name                 = "zsp-honeytoken-mesh"
+max_session_duration_seconds = 3600
+secops_alert_email           = "secops-alerts@enterprise-defense.internal"
